@@ -12,10 +12,10 @@ const router = express.Router();
 
 router.post('/login', async (req, res) => {
     try {
-        // todo for post
+        // todo for post and the body
         const { username, password } = req.body;
 
-        // Validate input from the login
+        // Validate input from the login 
         if (!username || !password) {
             return res.status(400).send('Username and password are required');
         }
