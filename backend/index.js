@@ -1,7 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import dotenv from 'dotenv'
@@ -17,7 +16,14 @@ app.use(express.json());
 mongoose.connect(mongo_url);
 
 import cors from "cors";
-app.use(cors());
+
+const corsConfig = {
+    origin: "*",
+    credential: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+};
+app.options("", cors(corsConfig));
+app.use(cors(corsConfig));
 
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
