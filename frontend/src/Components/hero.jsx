@@ -13,11 +13,9 @@ const Hero = () => {
         setLoading(true);
         try {
             const response = await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/task/delete?id=${id}`);
-            // Ensure response.data.response contains the updated list
             if (response.data.response) {
                 setTodo(response.data.response);
             } else {
-                // Fallback: Remove the deleted item from the state locally
                 setTodo((prevTodo) => prevTodo.filter((item) => item._id !== id));
             }
         } catch (error) {
@@ -30,6 +28,8 @@ const Hero = () => {
 
 
     useEffect(() => {
+        console.log("hi there");
+        
         axios
             .get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/task/read`)
             .then((response) => {
