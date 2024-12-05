@@ -39,6 +39,9 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
+app.get('/', (req, res) => {
+    res.send("Hello World");
+})
 
 import task from './route/task.route.js';
 app.use('/task', task);
