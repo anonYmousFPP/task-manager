@@ -12,7 +12,7 @@ const Hero = () => {
     const deleteTodo = async (id) => {
         setLoading(true);
         try {
-            const response = await axios.delete(`${import.meta.VITE_REACT_APP_BACKEND_BASEURL}/task/delete?id=${id}`);
+            const response = await axios.delete(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/task/delete?id=${id}`);
             // Ensure response.data.response contains the updated list
             if (response.data.response) {
                 setTodo(response.data.response);
@@ -31,7 +31,7 @@ const Hero = () => {
 
     useEffect(() => {
         axios
-            .get(`${import.meta.VITE_REACT_APP_BACKEND_BASEURL}/task/read`)
+            .get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/task/read`)
             .then((response) => {
                 const data = response.data.response || [];
                 setTodo(data);
@@ -45,7 +45,7 @@ const Hero = () => {
 
     const todoHandler = () => {
         axios({
-            url: `${import.meta.VITE_REACT_APP_BACKEND_BASEURL}/task/create`,
+            url: `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/task/create`,
             method: 'POST',
             data: { task, time },
         })
@@ -56,7 +56,7 @@ const Hero = () => {
                 setError(err.message);
                 console.error('Unsuccessful', err.response?.data);
             });
-        
+
         setTask("");
         setTime("");
     };
