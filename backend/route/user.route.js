@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
         // todo for post
         const { username, password } = req.body;
 
-        // Validate input
+        // Validate input from the login
         if (!username || !password) {
             return res.status(400).send('Username and password are required');
         }
